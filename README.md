@@ -19,4 +19,6 @@
 - Before running the Kafka commands we had to set the *CLASSPATH* environment variable first by adding the respective path to our *.bashrc* file, this allows it to be in-place each time a new terminal is opened up.
 - Finally, three topis were created using the kafka create topic command.
 
-
+### Connecting MSK CLuster to S3 Bucket
+- For convenience an S3 bucket was already provided for us, within the bucket we had to download the *Confluent.io Amazon S3 Connector* and copy it into our respective bucket. Then a custom plugin was created that would link to the already created S3 bucket.
+- Further a connector was created, with cnfigurations for the correct S3 bucket and user, which would mean a pluin-connectr pair will now automatically store all data passing through the cluster, in the designated S3 bucket.
