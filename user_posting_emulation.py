@@ -54,10 +54,56 @@ def run_infinite_post_data_loop():
             
             for row in user_selected_row:
                 user_result = dict(row._mapping)
+    
+        send_data(pin_result, geo_result, user_result)
             
-            print(pin_result)
-            print(geo_result)
-            print(user_result)
+            #print(pin_result)
+            #print(geo_result)
+            #print(user_result)
+
+ 
+def send_data(pin_result, geo_result, user_result):
+
+    invoke_url_pin = 'https://dapwwc6yy2.execute-api.us-east-1.amazonaws.com/test/topics/1272e2b5acdf.pin'
+    invoke_url_geo = 'https://dapwwc6yy2.execute-api.us-east-1.amazonaws.com/test/topics/1272e2b5acdf.geo'
+    invoke_url_user = 'https://dapwwc6yy2.execute-api.us-east-1.amazonaws.com/test/topics/1272e2b5acdf.user'
+
+    payload_pin = json.dumps({
+        'pin_result': [
+            {
+                'value': {'index': pin_result['index'], 'unique_id': pin_result['unique_id'], 'title': pin_result['title'], 'description': pin_result['description'], 
+                          'poster_name': pin_result['poster_name'], 'follower_count': pin_result['follower_count'], 'tag_list': pin_result['tag_list'], 
+                          'is_image_or_video': pin_result['is_image_or_video'], 'image_src': pin_result['image_src'], 'downloaded': pin_result['downloaded'], 
+                          'save_location': pin_result['save_location'], 'category': pin_result['category']}
+            }
+        ]
+    })
+
+    payload_geo = json.dumps({
+        'geo_result': [
+            {
+                'value': {'ind': geo_result['ind'], 'timestamp': geo_result['timestamp'], 'latitude': geo_result['latitude'], 'longitude': geo_result['longitude'], 
+                          'country': geo_result['country']}
+            }
+        ]
+    }, default=str)
+
+    payload_user = json.dumps({
+        'user_result': [
+            {
+                'value': {'ind': user_result['ind'], 'first_name': user_result['first_name'], 'last_name': user_result['last_name'], 'age': user_result['age'], 
+                          'date_joined': user_result['date_joined']}
+            }
+        ]
+    }, default=str)
+
+    headers = {'Content-Type': 'application/vnd.kafka.json.v2+json'}
+    response_pin = requests.request("POST", invoke_url_pin, headers=headers, data=payload_pin)
+    response_geo = requests.request("POST", invoke_url_geo, headers=headers, data=payload_geo)
+    repsonse_user = requests.request("POST", invoke_url_user, headers=headers, data=payload_user)
+    print(response_pin.status_code)
+    print(response_geo.status_code)
+    print(repsonse_user.status_code)
 
 
 if __name__ == "__main__":
