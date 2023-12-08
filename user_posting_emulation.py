@@ -69,7 +69,7 @@ def send_data(pin_result, geo_result, user_result):
     invoke_url_user = 'https://dapwwc6yy2.execute-api.us-east-1.amazonaws.com/test/topics/1272e2b5acdf.user'
 
     payload_pin = json.dumps({
-        'pin_result': [
+        'records': [
             {
                 'value': {'index': pin_result['index'], 'unique_id': pin_result['unique_id'], 'title': pin_result['title'], 'description': pin_result['description'], 
                           'poster_name': pin_result['poster_name'], 'follower_count': pin_result['follower_count'], 'tag_list': pin_result['tag_list'], 
@@ -80,7 +80,7 @@ def send_data(pin_result, geo_result, user_result):
     })
 
     payload_geo = json.dumps({
-        'geo_result': [
+        'records': [
             {
                 'value': {'ind': geo_result['ind'], 'timestamp': geo_result['timestamp'], 'latitude': geo_result['latitude'], 'longitude': geo_result['longitude'], 
                           'country': geo_result['country']}
@@ -89,7 +89,7 @@ def send_data(pin_result, geo_result, user_result):
     }, default=str)
 
     payload_user = json.dumps({
-        'user_result': [
+        'records': [
             {
                 'value': {'ind': user_result['ind'], 'first_name': user_result['first_name'], 'last_name': user_result['last_name'], 'age': user_result['age'], 
                           'date_joined': user_result['date_joined']}
@@ -111,5 +111,6 @@ if __name__ == "__main__":
     print('Working')
     
     
+
 
 
