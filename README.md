@@ -27,3 +27,7 @@
 - Utilising the AP gateway console on aws, we created a resource that allowed us to build a proxy integration for our API. Once created a HTTP ANY method was created inside using the endpoint urk from ouor EC2 instance.
 - API was deployed and the confluent package was installed in our local EC2 machine, modifying the *kafka-rest.properties* file allow the REST proxy to perform IAM authentication.
 - starting the REST proxy combined with modifyng the *user_posting_emulation.py* file our data was successfully sent to the cluster and stored within the repsective topics within.
+
+## Batch Processing in Databricks
+- For convenice purposes an access key and secret access key were already provided for us and stored in a csv file. Our specific S3 bucket was mounted to databrick and confirmed by running the script, *display(dbutils.fs.ls('/mnt/s3_bucket'))*.
+- Once mounted each batch of data was processed into its respective dataframe. 3 were created one for each topic in the cluster, *df_pin*, *df_geo* and *df_user*.
