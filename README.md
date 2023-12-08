@@ -22,3 +22,8 @@
 ### Connecting MSK CLuster to S3 Bucket
 - For convenience an S3 bucket was already provided for us, within the bucket we had to download the *Confluent.io Amazon S3 Connector* and copy it into our respective bucket. Then a custom plugin was created that would link to the already created S3 bucket.
 - Further a connector was created, with cnfigurations for the correct S3 bucket and user, which would mean a pluin-connectr pair will now automatically store all data passing through the cluster, in the designated S3 bucket.
+
+### Configuring the API
+- Utilising the AP gateway console on aws, we created a resource that allowed us to build a proxy integration for our API. Once created a HTTP ANY method was created inside using the endpoint urk from ouor EC2 instance.
+- API was deployed and the confluent package was installed in our local EC2 machine, modifying the *kafka-rest.properties* file allow the REST proxy to perform IAM authentication.
+- starting the REST proxy combined with modifyng the *user_posting_emulation.py* file our data was successfully sent to the cluster and stored within the repsective topics within.
