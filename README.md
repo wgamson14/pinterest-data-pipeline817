@@ -28,7 +28,12 @@
 - API was deployed and the confluent package was installed in our local EC2 machine, modifying the *kafka-rest.properties* file allow the REST proxy to perform IAM authentication.
 - starting the REST proxy combined with modifyng the *user_posting_emulation.py* file our data was successfully sent to the cluster and stored within the repsective topics within.
 
-### Batch Processing
-#### Databricks
+### Databricks
 - For convenice purposes an access key and secret access key were already provided for us and stored in a csv file. Our specific S3 bucket was mounted to databrick and confirmed by running the script, *display(dbutils.fs.ls('/mnt/s3_bucket'))*.
 - Once mounted each batch of data was processed into its respective dataframe. 3 were created one for each topic in the cluster, *df_pin*, *df_geo* and *df_user*.
+
+### Spark on Databricks
+- Initially we had to clean our newly formualted dataframes, the dataframes were read into Databricks using Spark.
+- Necessary transformations were performed to clean the data including chanigng datatypes, removng nulls, changing the column order and converting numeric dta into the same format.
+- The cleaned dataframes were then saved to a parquet file, to aallow us to read them into a separate notebook, for convenince puroposes, for querying.
+- The data was read into the *querying_data* notebook from the parquet files and then queried using SQL in the notebook.
