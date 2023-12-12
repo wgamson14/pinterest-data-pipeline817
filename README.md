@@ -37,3 +37,8 @@
 - Necessary transformations were performed to clean the data including chanigng datatypes, removng nulls, changing the column order and converting numeric dta into the same format.
 - The cleaned dataframes were then saved to a parquet file, to aallow us to read them into a separate notebook, for convenince puroposes, for querying.
 - The data was read into the *querying_data* notebook from the parquet files and then queried using SQL in the notebook.
+
+### AWS MWAA
+- An API token and *requirements.txt* file were already provided for us.
+- An Airflow DAG was created in a python file that will trigger a Databricks notebook to run and subsequently uploaded into the *dags* folder in the *mwaa-dags-bucket*.
+- Once successfully upload, the file was manually triggered on the Airflow UI to check that everything runs successfully.
