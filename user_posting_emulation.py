@@ -56,10 +56,6 @@ def run_infinite_post_data_loop():
                 user_result = dict(row._mapping)
     
         send_data(pin_result, geo_result, user_result)
-            
-            #print(pin_result)
-            #print(geo_result)
-            #print(user_result)
 
  
 def send_data(pin_result, geo_result, user_result):
@@ -100,10 +96,10 @@ def send_data(pin_result, geo_result, user_result):
     headers = {'Content-Type': 'application/vnd.kafka.json.v2+json'}
     response_pin = requests.request("POST", invoke_url_pin, headers=headers, data=payload_pin)
     response_geo = requests.request("POST", invoke_url_geo, headers=headers, data=payload_geo)
-    repsonse_user = requests.request("POST", invoke_url_user, headers=headers, data=payload_user)
+    response_user = requests.request("POST", invoke_url_user, headers=headers, data=payload_user)
     print(response_pin.status_code)
     print(response_geo.status_code)
-    print(repsonse_user.status_code)
+    print(response_user.status_code)
 
 
 if __name__ == "__main__":

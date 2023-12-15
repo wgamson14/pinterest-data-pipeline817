@@ -6,7 +6,7 @@ dbutils.fs.ls("/FileStore/tables")
 from pyspark.sql.functions import *
 import urllib
 
-file_type = 'csv'
+file_type = 'csv' 
 first_row_is_header = 'true'
 delimiter = ','
 
