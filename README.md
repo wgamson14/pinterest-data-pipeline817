@@ -2,11 +2,16 @@
 
 # Contents
 - Description
-- Process
 - File Structure
+- Process
+
 
 # Description 
 In this project the user develops an end-to-end AWS-hhosted data pipeline that is insired by Pinterest's experiment processing pipeline and is developed using a Lambda architecture. Initially, the batc data is ingested using AWS API GAteway and AWS MUSK to be stored in an AWS S3 Bucket. This batch data is then read from the S3 bucket into a Databricks notebook where the user can pprocess it using Apache Spark. Once transformed, the user queries the data using SQL practices within the Databricks noteboook. Streaming data is read near rea-time from AWS Kinesis using Spark Structured Streaming in Databricks, tis data is transformed similarly adn then stored in Databricks Delta Tables for long term storage.
+
+# File Structure
+- *user_posting_emulation* and *user_posting_emulation_streaming* python files necessary for collecting the data from a daatabase and providing an infite loop of data to ingest.
+- 
 
 # Process
 ## Batch Processing
