@@ -10,8 +10,12 @@
 In this project the user develops an end-to-end AWS-hhosted data pipeline that is insired by Pinterest's experiment processing pipeline and is developed using a Lambda architecture. Initially, the batc data is ingested using AWS API GAteway and AWS MUSK to be stored in an AWS S3 Bucket. This batch data is then read from the S3 bucket into a Databricks notebook where the user can pprocess it using Apache Spark. Once transformed, the user queries the data using SQL practices within the Databricks noteboook. Streaming data is read near rea-time from AWS Kinesis using Spark Structured Streaming in Databricks, tis data is transformed similarly adn then stored in Databricks Delta Tables for long term storage.
 
 # File Structure
-- *user_posting_emulation* and *user_posting_emulation_streaming* python files necessary for collecting the data from a daatabase and providing an infite loop of data to ingest.
-- 
+- *user_posting_emulation.py* and *user_posting_emulation_streaming.py* python files necessary for collecting the data from a daatabase and providing an infite loop of data to ingest.
+- *batch_processing.py* databricks notebook to mount the batch data to an s3 bucket and also read data in as dataframes for transformations.
+- *cleaning_posts.py* databricks notebook to transform the batch data.
+- *querying_data.sql* dtabricks noteook to query the cleaned data for Pinterest.
+- *stream_processing.py* databricks notebook to inngest the stream data and also transform and save as Dekta tables.
+- *1272e2b5acdf_dag.py* Apache Airflow DAG created in python.
 
 # Process
 ## Batch Processing
