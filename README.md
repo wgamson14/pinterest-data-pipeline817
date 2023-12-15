@@ -1,16 +1,15 @@
 # pinterest-data-pipeline817
 
 # Contents
-- Description and Process
-- Installation
-- Usage
+- Description
+- Process
 - File Structure
-- License Ibformation
 
-# Description and Process
-## Description
+# Description 
+In this project the user develops an end-to-end AWS-hhosted data pipeline that is insired by Pinterest's experiment processing pipeline and is developed using a Lambda architecture. Initially, the batc data is ingested using AWS API GAteway and AWS MUSK to be stored in an AWS S3 Bucket. This batch data is then read from the S3 bucket into a Databricks notebook where the user can pprocess it using Apache Spark. Once transformed, the user queries the data using SQL practices within the Databricks noteboook. Streaming data is read near rea-time from AWS Kinesis using Spark Structured Streaming in Databricks, tis data is transformed similarly adn then stored in Databricks Delta Tables for long term storage.
 
-## Process
+# Process
+## Batch Processing
 ### Configuring the EC2 Kafka Client
 - Initially we had to create a .pem locally using the AWS account that was provided.
 - We connected to the EC2 instance using the ssh client, before setting up kafka within the within the client EC2 machine and the IAM MSK authentication package was installed.
@@ -42,3 +41,12 @@
 - An API token and *requirements.txt* file were already provided for us.
 - An Airflow DAG was created in a python file that will trigger a Databricks notebook to run and subsequently uploaded into the *dags* folder in the *mwaa-dags-bucket*.
 - Once successfully upload, the file was manually triggered on the Airflow UI to check that everything runs successfully.
+
+## Stream Processing
+### AWS Kinesis
+- 3 data stream were crated within the AWS Kinesis console, anmed usig our respective user_id.
+- Movng over to the API Gateway console we had to configure the previosuly created REST API enable it to ivoke, List streams in kinesis, create, describe and delete streams and also add records to streams in kinesis. For convenince an IAM role was previosuly created for us.
+- Creating a new file, building on our previous *user_posting_emulation*, we were able to send data through to the kinesis streams.
+- In databricks we processed the stream data by reading in the credentials providided for us and the method was run to ingest data into the kinesis console before being read into the notebook.
+- Finally, the data was transformed in the same way as the batch processing and subsequently uploaded into 3 correspoding delta tables saved in the catalogue in databricks.
+- 
